@@ -1,0 +1,18 @@
+﻿<div class="message-box-overlay {{$ctrl.isOpen?'open':''}}">
+    <div class="message-box-dialog">
+        <div class="header">
+            <div class="title">{{$ctrl.title}}</div>
+            <div class="close-button" ng-click="$ctrl.close()"><i class="fa fa-times" aria-hidden="true"></i></div>
+        </div>
+        <div class="body">
+            <div id="msgb_contentIcon" class="content-icon"></div>
+            <div id="msgb_lblContent" class="content-text">{{$ctrl.message}}</div>
+        </div>
+        <div class="footer">
+            <div ng-show="$ctrl.btnOK.visible" id="msgb_btnOK" class="btn btn-default">OK</div>
+            <div ng-show="$ctrl.btnSave.visible" id="msgb_btnSave" class="btn btn-primary">Save</div>
+            <div ng-show="$ctrl.btndDelete.visible" id="msgb_btnDelete" class="btn btn-default">Delete</div>
+            <div ng-show="$ctrl.btnCancel.visible" id="msgb_btnCancel" class="btn btn-default">Cancel</div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+﻿<div ng-switch="$ctrl.displayMode" class="templatenoidung-text">
+    <div ng-switch-when="preview">
+        {{$ctrl.data.template_noidung_text.noi_dung}}
+    </div>
+    <div ng-switch-when="edit">
+        <textarea>{{$ctrl.data.template_noidung_text.noi_dung}}</textarea>
+    </div>
+</div>

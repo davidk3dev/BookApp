@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+
+<html ng-app="bookapp">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Home</title>
+    <link href="~/Asset/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Asset/app/app.css" rel="stylesheet" />
+    <link href="~/Asset/app/view1/view1.css" rel="stylesheet" />
+    <link href="~/Asset/app/components/components.css" rel="stylesheet" />
+    <link href="~/Asset/vendor/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+    <script src="~/Asset/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="~/Asset/vendor/jquery-ui/jquery-ui.min.js"></script>
+</head>
+<body>
+    @*<div id="root">
+    <ul class="menu">
+        <li><a href="#!/view1">view1</a></li>
+        <li><a href="#!/view2">view2</a></li>
+    </ul></div>*@
+    <div class="page-placeholder" ng-view></div>
+    <message-box id="messageBox" ></message-box>
+  
+    <script src="~/Asset/vendor/angular/angular.js"></script>
+    <script src="~/Asset/vendor/angular-route/angular-route.js"></script>
+    <script src="~/Asset/app/components/message-box/messageBoxCtrl.js"></script>
+    <script src="~/Asset/app/components/box-header-menu/boxHeaderMenuCtrl.js"></script>
+    <script src="~/Asset/app/components/bai/baiCtrl.js"></script>
+    <script src="~/Asset/app/components/template-noidung/templateNoidungText.js"></script>
+    <script src="~/Asset/app/app.js"></script>
+    <script src="~/Asset/app/app-angular.js"></script>
+    <script src="~/Asset/app/view1/view1.js"></script>
+    <script src="~/Asset/app/view2/view2.js"></script>
+</body>
+</html>

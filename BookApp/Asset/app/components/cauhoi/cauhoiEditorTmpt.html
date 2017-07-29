@@ -1,0 +1,22 @@
+﻿<div ng-switch-when="edit" class="box bai">
+    <div class="box-header">
+        <div class="title">
+            <div class="icon"></div>
+            <div class="title"><input type="text" value="{{$ctrl.content.title}}" /></div>
+        </div>
+        <div class="actions">
+            <div class="box-header-button button" ng-click="$ctrl.btnEditClick()">
+                <div class="icon"><i class="fa fa-files-o" aria-hidden="true"></i></div>
+                <div class="text">Edit</div>
+            </div>
+            <div class="box-header-button menu" ng-click="$ctrl.btnMenuClick($event)">
+                <div class="icon"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
+                <div class="menu-container {{$ctrl.isHeaderMemuShow?'show':''}}">
+                    <box-header-menu ng-if="$ctrl.isHeaderMemuShow" data="$ctrl.menuCommands"></box-header-menu>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="box-body"></div>
+</div>
