@@ -1,8 +1,15 @@
-﻿<div ng-switch="$ctrl.displayMode" class="templatenoidung-text">
-    <div ng-switch-when="preview">
-        {{$ctrl.data.template_noidung_text.noi_dung}}
+﻿<div ng-switch="$ctrl.displaymode" class="template-noidung templatenoidung-text">
+    <div class="floating-button-panel">
+        <!--<i class="fa fa-times-circle" aria-hidden="true"></i>-->
+        <div class="floating-button" ng-show="$ctrl.data.changed">LUU</div>
+        <div class="floating-button" ng-click="$ctrl.remove()">XOA</div>
     </div>
-    <div ng-switch-when="edit">
-        <textarea>{{$ctrl.data.template_noidung_text.noi_dung}}</textarea>
+    <div class="preview-mode" ng-switch-when="preview">
+        {{$ctrl.data.dbData.template_noidung_text.noi_dung}}
+    </div>
+    <div class="edit-mode" ng-switch-when="edit">
+        <textarea ng-model="$ctrl.data.dbData.template_noidung_text.noi_dung" ng-change="$ctrl.txtContentChanged()">
+            {{$ctrl.data.dbData.template_noidung_text.noi_dung}}
+        </textarea>
     </div>
 </div>

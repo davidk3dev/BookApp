@@ -13,13 +13,6 @@ angular.module('bookapp', [
     templateUrl: '../asset/app/components/bai/baiTmpt.html',
     controller: baiController
 })
-.component('baiEditor', {
-    bindings: {
-        data: '<'
-    },
-    templateUrl: '../asset/app/components/bai/baiEditorTmpt.html',
-    controller: baiEditorController
-})
 .component('boxHeaderMenu', {
     bindings: {
         data: '<'
@@ -33,7 +26,9 @@ angular.module('bookapp', [
 })
 .component('templatenoidungText', {
     bindings: {
-        data: '<'
+        displaymode: '<',
+        data: '<',
+        initCallback: '&'
     },
     templateUrl: '../asset/app/components/template-noidung/templateNoidungTextTmpt.html',
     controller: templateNoidungTextController

@@ -1,37 +1,17 @@
 ﻿<li ng-switch="$ctrl.isEditMode" class="box-list-item bai">
-    <div class="box-preview bai">
+    <div class="box-preview cauhoi">
         <div class="floating-command-panel">
             <div class="floating-button button-edit">Edit</div>
         </div>
-        <div class="phan-noi-dung-de-bai">
-            <div class="noi-dung-de-bai"></div>
+        <div class="phan-noidung-cauhoi">
+            <templatenoidung-text ng-repeat="tmp in $ctrl.data.ds_templatenoidungdebai" data="tmp" ng-if="tmp.loai_template=='TEXT'"></templatenoidung-text>
         </div>
-        <div class="phan-cau-hoi">
-            <cau-hoi ng-repeat="$ctrl.cauhoi in danhsachcauhoi"></cau-hoi>
+        <div class="phan-dapan">
+            
         </div>
     </div>
-    <div ng-switch-when="edit" class="box-edit bai">
-        <div class="box-header">
-            <div class="title">
-                <div class="icon"></div>
-                <div class="title">{{$ctrl.content.title}}</div>
-            </div>
-            <div class="actions">
-                <div class="box-header-button button" ng-click="$ctrl.btnEditClick()">
-                    <div class="icon"><i class="fa fa-files-o" aria-hidden="true"></i></div>
-                    <div class="text">Edit</div>
-                </div>
-                <div class="box-header-button menu" ng-click="$ctrl.btnMenuClick($event)">
-                    <div class="icon"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
-                    <div class="menu-container {{$ctrl.isHeaderMemuShow?'show':''}}">
-                        <box-header-menu ng-if="$ctrl.isHeaderMemuShow" data="$ctrl.menuCommands"></box-header-menu>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-        <div class="box-body"></div>
+    <div ng-switch-when="edit" class="box-edit cauhoi">
+        
     </div>
-    <bai-editor ng-switch-when="preview"></bai-editor>
 </li>
 

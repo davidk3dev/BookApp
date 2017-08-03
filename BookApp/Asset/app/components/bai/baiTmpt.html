@@ -1,37 +1,44 @@
-﻿<li ng-switch="$ctrl.isEditMode" class="box-list-item bai">
-    <div ng-switch-when="preview" class="box-preview bai">
-        <div class="floating-command-panel">
-            <div class="floating-button button-edit">Edit</div>
-        </div>
-        <div class="phan-noi-dung-de-bai">
-            <templatenoidung-text ng-repeat="tmp in $ctrl.data.ds_templatenoidungdebai" data="tmp"></templatenoidung-text>
-        </div>
-        <div class="phan-cau-hoi">
-            <!--<cau-hoi ng-repeat="$ctrl.cauhoi in danhsachcauhoi"></cau-hoi>-->
-        </div>
-    </div>
-    <!--<div ng-switch-when="edit" class="box-edit bai">
+﻿<li class="box-list-item bai">
+    <div class="box bai">
         <div class="box-header">
-            <div class="title">
+            <div class="float-left-items">
                 <div class="icon"></div>
-                <div class="title">{{$ctrl.content.title}}</div>
+                <div class="title">Bai {{$ctrl.data.dbData.id_bai}}</div>
+                <div class="info"></div>
             </div>
-            <div class="actions">
-                <div class="box-header-button button" ng-click="$ctrl.btnEditClick()">
-                    <div class="icon"><i class="fa fa-files-o" aria-hidden="true"></i></div>
-                    <div class="text">Edit</div>
-                </div>
-                <div class="box-header-button menu" ng-click="$ctrl.btnMenuClick($event)">
+            <div class="float-right-items">
+                <div class="box-header-text">{{$ctrl.data.dbData.ngay_tao | date:'dd-MM-yyyy'}}</div>
+                <div ng-show="$ctrl.displayMode == 'edit'" name="btnSave" class="box-header-button button" ng-click="$ctrl.btnSaveClick()">Save</div>
+                <div href="" class="box-header-button menu" ng-click="$ctrl.btnMenuClick($event)">
                     <div class="icon"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
                     <div class="menu-container {{$ctrl.isHeaderMemuShow?'show':''}}">
                         <box-header-menu ng-if="$ctrl.isHeaderMemuShow" data="$ctrl.menuCommands"></box-header-menu>
                     </div>
-                    
                 </div>
             </div>
         </div>
-        <div class="box-body"></div>
+        <div class="box-body">
+            <div class="phan-noidung-debai" ng-class="{editmode:$ctrl.displayMode=='edit'}">
+                <templatenoidung-text init-callback="$ctrl.childCpnAdded(c)"
+                                      displaymode="$ctrl.displayMode"
+                                      ng-repeat="tmp in $ctrl.dsTemplateNoidungDebai"
+                                      data="tmp"
+                                      ng-if="tmp.dbData.loai_template=='TEXT'" />
+                <div name="btnThemNoidungDebai" class="dropdown" ng-show="$ctrl.displayMode == 'edit'">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Them noi dung de bai
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" ng-click="$ctrl.mnuThemNoidungDebaiTextClick()">TEXT</a>
+                        <a class="dropdown-item">HINH ANH</a>
+                        <a class="dropdown-item">BAI NGHE</a>
+                    </div>
+                </div>
+            </div>
+            <div class="phan-cauhoi">
+                <!--<cau-hoi ng-repeat="$ctrl.cauhoi in danhsachcauhoi"></cau-hoi>-->
+            </div>
+        </div>
     </div>
-    <bai-editor ng-switch-when="preview"></bai-editor>-->
 </li>
 

@@ -96,7 +96,99 @@ namespace BookApp.Controllers
                 return CreateResponse(query);
             }
         }
+        [HttpPost]
+        public HttpResponseMessage TestInser([FromBody] EnBai bai)
+        {
+            return CreateResponse(bai);
+        }
+        [HttpPost]
+        public HttpResponseMessage InsertBai([FromBody] EnBai bai)
+        {
+            //return CreateResponse(bai);
+            var objInsert = new tb_bai
+            {
+                id_chuyende = bai.id_chuyende,
+                ngay_tao = bai.ngay_tao,
+                bai_mau = bai.bai_mau,
+                thu_tu = bai.thu_tu,
+                xuat_ban = bai.xuat_ban,
+                tb_templatenoidung = bai.ds_templatenoidungdebai.Select(b =>
+                {
+                    if (b.loai_template == LoaiTemplateNoidungDeBai.TEXT)
+                    {
+                        return new tb_templatenoidung
+                        {
+                            loai_template = LoaiTemplateNoidungDeBai.TEXT,
+                            tb_templatenoidung_text = new tb_templatenoidung_text
+                            {
+                                noidung = b.template_noidung_text.noi_dung
+                            }
+                        };
+                    }
+                    else if (b.loai_template == LoaiTemplateNoidungDeBai.HINH_ANH)
+                    {
+                        return new tb_templatenoidung
+                        {
+                            loai_template = LoaiTemplateNoidungDeBai.HINH_ANH,
+                            tb_templatenoidung_hinhanh = new tb_templatenoidung_hinhanh
+                            {
+                                url = b.template_noidung_hinhanh.url
+                            }
+                        };
+                    }
+                    return new tb_templatenoidung { };
+                }).ToList(),
+                tb_cauhoi = bai.ds_cauhoi.Select(h => new tb_cauhoi
+                {
+                    loai_cau_hoi = h.loai_cau_hoi,
+                    ngay_tao = h.ngay_tao,
+                    phuong_thuc_check_dap_an = h.phuongthuc_check_dapan,
+                    thu_tu = h.thu_tu,
+                    xuat_ban = h.xuat_ban,
+                    gia_tri_dung = h.gia_tri_dung,
+                    tb_templatenoidung = h.ds_templatenoidungcauhoi.Select(t => {
+                        if (t.loai_template == LoaiTemplateNoidungDeBai.TEXT)
+                        {
+                            return new tb_templatenoidung
+                            {
+                                loai_template = LoaiTemplateNoidungDeBai.TEXT,
+                                tb_templatenoidung_text = new tb_templatenoidung_text
+                                {
+                                    noidung = t.template_noidung_text.noi_dung
+                                }
+                            };
+                        }
+                        else if (t.loai_template == LoaiTemplateNoidungDeBai.HINH_ANH)
+                        {
+                            return new tb_templatenoidung
+                            {
+                                loai_template = LoaiTemplateNoidungDeBai.HINH_ANH,
+                                tb_templatenoidung_hinhanh = new tb_templatenoidung_hinhanh
+                                {
+                                    url = t.template_noidung_hinhanh.url
+                                }
+                            };
+                        }
+                        return new tb_templatenoidung { };
+                    }).ToList()
+                }).ToList()
+            };
 
+            try
+            {
+                tb_bai rs = null;
+                using (var db = new Entities())
+                {
+                    rs = db.tb_bai.Add(objInsert);
+                    db.SaveChanges();
+                }
+                return CreateResponse(rs);
+            }
+            catch (Exception ex)
+            {
+                return CreateResponse(new { error = ex.Message });
+            }
+        }
         private HttpResponseMessage CreateResponse(object content)
         {
             var result = JsonConvert.SerializeObject(content, Formatting.Indented, new JsonSerializerSettings
